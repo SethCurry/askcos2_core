@@ -13,10 +13,10 @@ System_Boundary(host, "Host Machine") {
     Container_Boundary(docker, "Docker Containers") {
         Container(api, "API", "Runs the ASKCOSv2 API")
         Container(precompute, "Precompute", "Runs precompute tasks")
+        Container(celery, "Celery", "Runs Celery workers")
         ContainerDb(mongo, "MongoDB", "Stores the ASKCOSv2 database")
         Container(rabbitmq, "RabbitMQ", "Handles Celery tasks")
         Container(redis, "Redis", "Caches data")
-        Container(celery, "Celery", "Runs Celery workers")
     }
 }
 
