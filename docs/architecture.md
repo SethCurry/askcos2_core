@@ -22,9 +22,8 @@ System_Boundary(host, "Host Machine") {
 
 Rel_Down(user, nginx, "HTTP/S")
 Rel_Down(nginx, api, "HTTP/S")
+Rel_Up(rabbitmq, celery, "Queue Tasks")
 Rel_Down(api, mongo, "Data")
 Rel_Down(api, rabbitmq, "Queue Tasks")
-Rel_Down(rabbitmq, celery, "Queue Tasks")
-
 UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
 ```
