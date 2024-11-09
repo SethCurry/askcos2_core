@@ -25,4 +25,6 @@ Rel(nginx, api, "HTTP/S")
 Rel(api, mongo, "Data")
 Rel(api, rabbitmq, "Queue Tasks")
 Rel(rabbitmq, celery, "Queue Tasks")
+
+UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
 ```
