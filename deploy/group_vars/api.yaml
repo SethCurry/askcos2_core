@@ -1,0 +1,4 @@
+nginx_use_tls: true
+nginx_server_name: askcos.example.com
+nginx_tls_cert_path: /etc/ssl/certs/askcos.ssl.cert
+nginx_tls_key_path: /etc/ssl/private/askcos.ssl.key

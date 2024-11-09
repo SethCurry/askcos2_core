@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "deploy"
+version = "0.0.1"
+description = "Ansible deployment for askcos2_core"
+authors = ["Seth Curry <seth@scurry.io>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+ansible = "^10.6.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

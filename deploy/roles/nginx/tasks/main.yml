@@ -1,0 +1,41 @@
+- name: Ensure nginx is installed
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+
+- name: Check if TLS certs exist
+  ansible.builtin.stat:
+    path: "{{ nginx_tls_cert_path }}"
+  register: nginx_tls_cert
+
+- name: TLS cert does not exist, generating
+  ansible.builtin.command:
+    cmd: openssl req -new -newkey rsa:4096 -days 3650 -nodes -x509 -subj "/C=US/ST=MA/L=BOS/O=askcos/CN={{ nginx_server_name }}" -keyout {{ nginx_tls_key_path }} -out {{ nginx_tls_cert_path }}
+  when: not nginx_tls_cert.stat.exists
+
+- name: Install nginx config
+  ansible.builtin.template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/sites-available/askcos
+    owner: root
+    group: root
+    mode: 0644
+  register: nginx_config
+
+- name: Enable nginx config
+  ansible.builtin.file:
+    src: /etc/nginx/sites-available/askcos
+    dest: /etc/nginx/sites-enabled/askcos
+    state: link
+
+- name: Restart nginx
+  ansible.builtin.service:
+    name: nginx
+    state: restarted
+  notify:
+    - Restart nginx
+
+- name: Ensure nginx is running
+  ansible.builtin.service:
+    name: nginx
+    state: started
