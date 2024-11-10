@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "deploy"
+version = "0.0.1"
+description = ""
+authors = ["Seth Curry <seth@scurry.io>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pyinfra = "^3.1.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
